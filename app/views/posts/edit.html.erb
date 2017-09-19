@@ -1,0 +1,15 @@
+<div class="main posts-new">
+    <div class="container">
+        <div class="form-heading">編集する</div>
+        <%=form_tag("/posts/#{@post.id}/update")do%>
+        <div class="form">
+            <div class="form-body">
+                <textarea name="boyaki">
+                    <%=@post.boyaki%>
+                </textarea>
+                <input type="submit" value="喋る"></input>
+            </div>
+        </div>
+        <%end%>
+    </div>
+</div>
