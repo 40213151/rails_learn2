@@ -1,0 +1,25 @@
+<div class="main users-edit">
+    <div class="container">
+        <div class="form-heading">よさこいやー編集</div>
+        <div class="form users-form">
+            <div class="form-body">
+                
+                <%=@yosakoiyer.errors.full_messages.each do |message|%>
+                    <div class="form-error">
+                        <%=message%>
+                    </div>
+                <%end%>
+                
+                <%=form_tag("/yosakoiyers/#{@yosakoiyer.id}/update",{multipart: true})do%>
+                <p>よさ名</p>
+                <input name="yosaname" value="<%=@yosakoiyer.yosaname%>"></input>
+                <p>画像</p>
+                <input name="image" type="file"></input>
+                <p>メアド</p>
+                <input name="mail" value="<%=@yosakoiyer.mail%>"></input>
+                <input type="submit" value="変更"></input>
+                <%end%>
+            </div>
+        </div>
+    </div>
+</div>

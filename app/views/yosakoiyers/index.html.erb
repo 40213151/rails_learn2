@@ -1,0 +1,16 @@
+<div class="main users-index">
+    <div class="container">
+        <h1 class="users-haeding">こいやー</h1>
+        
+        <% @yosakoiyers.each do |yosakoiyer|%>
+        <div class="users-index-item">
+            <div class="user-left">
+                <img src="<%="/yosakoiyer_images/#{yosakoiyer.image_name}"%>">
+            </div>
+            <div class="user-right">
+        <%= link_to(yosakoiyer.yosaname, "/yosakoiyers/#{yosakoiyer.id}") %>
+            </div>
+         </div>
+        <%end%>
+    </div>
+</div>

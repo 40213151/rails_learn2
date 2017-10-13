@@ -1,15 +1,32 @@
 <div class="main posts-show">
     <div class="container">
         <div class="posts-show-item">
-            <%=@post.boyaki%>
+            <div class="posts-user-name">
+                <img src="<%="/yosakoiyer_images/#{@yosakoiyer.image_name}"%>">
+                <%=link_to(@yosakoiyer.yosaname,"/yosakoiyers/#{@yosakoiyer.id}")%>
+            </div>
+            <p><%=@post.boyaki%></p>
             <div class="post-time">
             <%=@post.created_at%>
         </div>
+        <%if Ine.find_by(yosakoiyer_id: @current_yosakoiyer.id, post_id: @post.id)%>
+        <%=link_to("/ines/#{@post.id}/destroy",{method: "post"})do%>
+            <span class="fa fa-heart like-btn-unlike"></span>
+        <%end%>
+        <%else%>
         
+        <%=link_to("/ines/#{@post.id}/create",{method: "post"})do%>
+            <span class="fa fa-heart like-btn"></span>
+        <%end%>
+        <%end%>
+        <%=@ines_count%>
+        
+        <%if @post.yosakoiyer.id == @current_yosakoiyer.id%>
         <div class="post-menus">
-            <%=link_to("チャンボ編集","/posts/#{@post.id}/edit")%>
-            <%=link_to("チャンボ殺し","/posts/#{@post.id}/destroy",{method:"post"})%>
+            <%=link_to("編集","/posts/#{@post.id}/edit")%>
+            <%=link_to("削除","/posts/#{@post.id}/destroy",{method:"post"})%>
         </div>
+        <% end%>
         </div>
     </div>
 </div>

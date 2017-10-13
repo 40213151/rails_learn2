@@ -10,12 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170914054750) do
+ActiveRecord::Schema.define(version: 20171005084835) do
+
+  create_table "ines", force: :cascade do |t|
+    t.integer  "post_id"
+    t.integer  "yosakoiyer_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.text     "boyaki"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "yosakoiyer_id"
+  end
+
+  create_table "yosakoiyers", force: :cascade do |t|
+    t.string   "yosaname"
+    t.string   "mail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "image_name"
+    t.string   "password"
   end
 
 end

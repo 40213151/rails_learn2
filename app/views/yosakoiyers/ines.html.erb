@@ -1,0 +1,37 @@
+<!-- 指定されたコードを貼り付けてください -->
+<div class="main user-show">
+  <div class="container">
+    <div class="user">
+      <img src="<%= "/yosakoiyer_images/#{@yosakoiyer.image_name}" %>">
+      <h2><%= @yosakoiyer.yosaname %></h2>
+      <p><%= @yosakoiyer.mail %></p>
+      <% if @yosakoiyer.id == @current_yosakoiyer.id %>
+        <%= link_to("編集", "/yosakoiyer/#{@yosakoiyer.id}/edit") %>
+      <% end %>
+    </div>
+    
+    <ul class="user-tabs">
+      <li><%= link_to("投稿", "/yosakoiyers/#{@yosakoiyer.id}") %></li>
+      <li class="active"><%= link_to("いいね!", "/yosakoiyers/#{@yosakoiyer.id}/ines") %></li>
+    </ul>
+    
+    <!-- 変数@likesに対してeach文を用いてください -->
+    <% @ine.each do |ine|%>
+      <!-- 変数postを定義してください -->
+      <% post = Post.find_by(id: ine.post_id)%>
+      
+      <div class="posts-index-item">
+        <div class="post-left">
+          <img src="<%= "/yosakoiyer_images/#{post.yosakoiyer.image_name}" %>">
+        </div>
+        <div class="post-right">
+          <div class="post-user-name">
+            <%= link_to(post.yosakoiyer.name, "/yosakoiyer/#{post.yosakoiyer.id}") %>
+          </div>
+          <%= link_to(post.content, "/posts/#{post.id}") %>
+        </div>
+      </div>
+    <!-- each文のendを追加してください -->
+    <% end%>
+  </div>
+</div>

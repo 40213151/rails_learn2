@@ -1,9 +1,17 @@
 <div class="main posts-index">
-    <div class="container">
-        <% @posts.each do |post| %>
-        <div class="posts-index-item">
-            <%= link_to(post.boyaki,"/posts/#{post.id}") %>
+  <div class="container">
+    <% @posts.each do |post| %>
+      <div class="posts-index-item">
+        <div class="post-left">
+          <img src="<%= "/yosakoiyer_images/#{post.yosakoiyer.image_name}" %>">
         </div>
-        <% end %>
-    </div>
+        <div class="post-right">
+          <div class="post-user-name">
+            <%= link_to(post.yosakoiyer.yosaname, "/yosakoiyers/#{post.yosakoiyer.id}") %>
+          </div>
+          <%= link_to(post.boyaki, "/posts/#{post.id}") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

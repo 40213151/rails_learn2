@@ -4,6 +4,12 @@
         <%=form_tag("/posts/#{@post.id}/update")do%>
         <div class="form">
             <div class="form-body">
+                <!-- error message -->
+                <% @post.errors.full_messages.each do |message| %>
+                <div class="form_error">
+                    <%= message %>
+                </div>
+                <% end %>
                 <textarea name="boyaki">
                     <%=@post.boyaki%>
                 </textarea>

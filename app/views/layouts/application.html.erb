@@ -6,16 +6,23 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <body>
     <header>
   <div class="header-logo">
-    <%= link_to("つぶやきチャンボ","/")%>
+     <% if @current_yosakoiyer %>
+          <%= link_to("TweetApp", "/posts/index") %>
+        <% else %>
+          <%= link_to("TweetApp", "/") %>
+     <% end %>
   </div>
   <ul class="header-menus">
+    
+    <% if @current_yosakoiyer%>
     <li>
-      <%= link_to("つぶやきチャンボとは","/about")%>
+      <%=link_to(@current_yosakoiyer.yosaname,"/yosakoiyers/#{@current_yosakoiyer.id}")%>
     </li>
     <li>
       <%=link_to("ぼやき一覧","/posts/index")%>
@@ -23,9 +30,31 @@
     <li>
       <%=link_to("ぼやく","/posts/new")%>
     </li>
+    <li>
+      <%=link_to("ゆーざー","/yosakoiyers/index")%>
+    </li>
+    <li>
+      <%=link_to("ログアウト","/logout",{method: :post})%>
+    </li>
+    <% else%>
+    <li>
+      <%= link_to("つぶやきあぷりとは","/about")%>
+    </li>
+    
+    <li>
+      <%=link_to("ゆーざー登録","/signup")%>
+    </li>
+    <li>
+      <%= link_to("ログイン","/login")%>
+    </li>
+    <% end%>
   </ul>
 </header>
-
+    <%if flash[:notice] %>
+    <div class="flash">
+      <%=flash[:notice] %>
+    </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
